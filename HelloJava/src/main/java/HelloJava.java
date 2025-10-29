@@ -10,10 +10,10 @@ public class HelloJava {
     // app starts from "entrypoint" (default: main method)
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        boolean validInput;
+        boolean validInput = false;
         float grade = 0;
 
-        do {
+        while (!validInput) {
             IO.print("Enter your grade as a number: ");
 
             try {
@@ -22,10 +22,9 @@ public class HelloJava {
             }
             catch (InputMismatchException e){
                 IO.println("Not a number!\n");
-                validInput = false;
                 scanner.nextLine();
             }
-        } while (!validInput);
+        }
 
         char letter;
         if (grade >= 90) letter = 'A';
@@ -35,5 +34,7 @@ public class HelloJava {
         else letter = 'F';
 
         IO.println(letter);
+
+        scanner.close();
     }
 }
