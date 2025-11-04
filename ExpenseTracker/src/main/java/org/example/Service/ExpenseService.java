@@ -12,7 +12,7 @@ public class ExpenseService {
     }
 
     public Expense createExpense(int id, double val, String merchant){
-        if (repo.readExpense(id) != null) return null;
+        if (repo.readExpense(id) != null || val < 0) return null;
 
         Expense expense = new Expense(id, new Date(), val, merchant);
         repo.createExpense(expense);
@@ -22,7 +22,7 @@ public class ExpenseService {
         return repo.readExpense(id);
     }
     public Expense updateExpense(int id, double val, String merchant){
-        if (repo.readExpense(id) != null) return null;
+        if (repo.readExpense(id) != null || val < 0) return null;
 
         Expense expense = new Expense(id, new Date(), val, merchant);
         repo.updateExpense(expense);
@@ -39,5 +39,11 @@ public class ExpenseService {
     }
     public void saveExpenses(List<Expense> expenses){
         repo.saveExpenses(expenses);
+    }
+    public double sumExpenses(){
+        List<Expense> expenses = repo.loadExpenses();
+        double sum = 0;
+        for (Expense e : expenses) sum += e.getValue();
+        return sum;
     }
 }
