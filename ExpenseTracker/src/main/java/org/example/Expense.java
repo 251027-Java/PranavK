@@ -19,11 +19,17 @@ public class Expense {
 
     public int getId() { return this.id; }
     public double getValue() { return value; }
+    public String getMerchant() { return merchant; }
 
     // Methods
     @Override
     public String toString() {
         return "Expense [id=" + this.id + ", date=" + this.date + ", value=" + this.value + ", merchant=" + this.merchant + "]";
+    }
+    @Override
+    public boolean equals(Object obj){
+        if (!(obj instanceof Expense exp)) return false;
+        return exp.getId()==id && exp.getValue()==value && exp.getMerchant().equals(merchant);
     }
 
     public String toCSV() {
