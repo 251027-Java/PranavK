@@ -20,6 +20,7 @@ public class Expense {
     public int getId() { return this.id; }
     public double getValue() { return value; }
     public String getMerchant() { return merchant; }
+    public Date getDate() { return date; }
 
     // Methods
     @Override
